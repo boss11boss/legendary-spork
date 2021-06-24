@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component,Fragment } from 'react';
+import Nav from "./Components/Nav";
+import ActiveCard from "./Components/ActiveCard";
+import AllCard from "./Components/AllCard/AllCard";
+import { connect } from 'react-redux';
+import { readAction } from "./Store/Action";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    this.props.readAction()
+    return (
+      <Fragment>
+          <Nav/>
+          <ActiveCard/>
+          <AllCard/>
+      </Fragment>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps=({
+  readAction
+})
+
+
+
+export default connect(null,mapDispatchToProps)(App);
